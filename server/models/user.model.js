@@ -39,6 +39,11 @@ const userSchema = new mongoose.Schema(
             lowercase: true,
             trim: true,
         },
+        // role:{
+        //     type:mongoose.Schema.Types._id,
+        //     ref:"Doctor",
+        //     enum:[ "doctor" , "Patient"]
+        // }
     },
     {
         timestamps: true,

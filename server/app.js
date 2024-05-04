@@ -15,10 +15,11 @@ app.use(cookieParser())
 
 
 //routes import
-
+import authRoutes from './routes/auth.routes.js';
 
 //routes declaration
 
+app.use('/api/v1/auth', authRoutes);
 
 // http://localhost:8000/api/v1/users/register
 

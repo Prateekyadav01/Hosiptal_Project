@@ -32,6 +32,9 @@ const doctorSchema = new mongoose.Schema(
             required: true,
             lowercase: true,
             trim: true,
+        },
+        role:{
+            enum:[]
         }
         // },
         // hospital_id :{

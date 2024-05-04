@@ -10,7 +10,7 @@ const Button = ({ data, function: handleChangeDoctor, function1: handleChangePat
           }`}
         >
           {
-            data ? "Are you a Doctor ? " :"Are you a Patient ?"
+            data ? "Are you a Doctor ? " :"Are you a Patient?"
           }
         </button>
     </div>

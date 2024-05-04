@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import Button from '../common/Button';
 import { signup } from '../../utils/Api';
+import { useDispatch, useSelector } from 'react-redux';
+import { getValue } from '../../utils/slice/roleSlice';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const selector = useSelector((store)=>store?.role);
+  // console.log(selector);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,6 +46,20 @@ const Login = () => {
     setAddress(event.target.value);
   };
 
+  const handleApiSignup = async()=>{
+    const data = await signup({
+      name,
+      email,
+      password,
+      aadharNumber,
+      phoneNumber,
+      address,
+      application,
+      role: selector ? "Doctor" :"Patient",
+    })
+    console.log(data);
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // Implement your login logic here
@@ -54,15 +73,8 @@ const Login = () => {
       application,
     };
 
-    const data = signup({
-      name,
-      email,
-      password,
-      aadharNumber,
-      phoneNumber,
-      address,
-      application,
-    })
+    handleApiSignup();
+    // console.log(data);
     console.log('Form Data:', formData);
     // Reset form fields after submission
     setName('');
@@ -77,12 +89,14 @@ const Login = () => {
     console.log(patient,doctor)
     setDoctor(true);
     setPatient(false);
+    dispatch(getValue(patient));
   };
 
   const handleChangePatient = () => {
     console.log(patient,doctor)
     setDoctor(false);
     setPatient(true);
+    dispatch(getValue(patient));
   };
 
   return (

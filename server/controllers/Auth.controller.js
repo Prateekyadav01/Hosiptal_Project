@@ -11,7 +11,7 @@ const {role} = req.body;
    if(role==='patient'){
     const { name, email, password, aadharNumber, phoneNumber, address } = req.body;
     if (
-        [name, email, password, aadharNumber, phoneNumber, address].some((field) => field?.trim() == "")
+        [name, email, password, aadharNumber, phoneNumber, address].some((field) => typeof field === 'string' && field.trim() === "")
     ) {
         throw new ApiError(400, "All fields are required")
     }
@@ -53,7 +53,7 @@ const {role} = req.body;
    }
    else{
     const{name,email,password,phoneNumber,address}= req.body;
-    if([name,email,password,phoneNumber,address].some((field)=>field?.trim()=="")){
+    if([name,email,password,phoneNumber,address].some((field)=>typeof field === 'string' && field.trim() === "")){
         throw new ApiError(400,"All fields are required")
     }
     const existingDoctor = await Doctor.findOne(

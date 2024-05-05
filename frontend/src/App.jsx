@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Team from './components/Team';
 import Login from './components/auth/Login';
 import Layout from './components/Layout';
+import ContactPage from './components/pages/Contact';
 
 function App() {
 
@@ -23,12 +24,18 @@ function App() {
           path: "/team",
           element: <Team />,
         },
+       
         {
-          path: "/login",
-          element: <Login />,
+          path:"/contact",
+          element:<ContactPage/>
         },
       ],
     },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+  
   ]);
 
   return (

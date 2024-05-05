@@ -14,13 +14,13 @@ const MiddleSection = () => {
         setActiveIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
     };
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            handleNextImage();
-        }, 5000);
+    // useEffect(() => {
+    //     const timer = setInterval(() => {
+    //         handleNextImage();
+    //     }, 5000);
 
-        return () => clearInterval(timer);
-    }, []);
+    //     return () => clearInterval(timer);
+    // }, []);
 
     return (
         <div className="relative top-16 w-full pt-4 pb-4 bg-gray-300 h-[80vh]">

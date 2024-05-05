@@ -101,7 +101,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen mt-8">
-      <div className="m-4">
+      <div className="m-2">
         <Button data={patient} function={handleChangeDoctor} function1={handleChangePatient}/>
         {/* <button
           onClick={handleChangePatient}

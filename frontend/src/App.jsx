@@ -6,20 +6,25 @@ import {
 import Home from './components/Home';
 import Team from './components/Team';
 import Login from './components/auth/Login';
+import Layout from './components/Layout';
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <Layout />,
       children: [
+        {
+          path: "/home",
+          element: <Home />,
+        },
         {
           path: "/team",
           element: <Team />,
         },
         {
-          path: "/Login",
+          path: "/login",
           element: <Login />,
         },
       ],

@@ -29,7 +29,7 @@ const doctorSchema = new mongoose.Schema(
         },
         address: {
             type: String,
-            required: true,
+        
             lowercase: true,
             trim: true,
         },

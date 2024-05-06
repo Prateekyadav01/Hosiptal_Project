@@ -52,9 +52,9 @@ console.log(role);
         new ApiResponse(200,createdUser,"user registered successfully")
     )
    }
-   else{
+   else if(role==='doctor'){
     const{name,email,password,phoneNumber,address,application}= req.body;
-    if([name,email,password,phoneNumber,address,role,application].some((field)=>typeof field === 'string' && field.trim() === "")){
+    if([name,email,password,phoneNumber,role,application].some((field)=>typeof field === 'string' && field.trim() === "")){
         throw new ApiError(400,"All fields are required")
     }
     const existingDoctor = await Doctor.findOne(
@@ -77,7 +77,7 @@ console.log(role);
         phoneNumber,
         application,
         role,
-        address
+        address : address || "",
     })
 
     const createdDoctor = await Doctor.findById(doctor._id).select(

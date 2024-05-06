@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import Button from '../common/Button';
 import { signup } from '../../utils/Api';
-import { useDispatch, useSelector } from 'react-redux';
-import { getValue } from '../../utils/slice/roleSlice';
+
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const selector = useSelector((store)=>store?.role);
-  // console.log(selector);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +12,7 @@ const Login = () => {
   const [application, setApplication] = useState('');
 
   const [doctor, setDoctor] = useState(false);
-  const [patient, setPatient] = useState(false);
+  const [patient, setPatient] = useState(true);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -46,23 +41,27 @@ const Login = () => {
     setAddress(event.target.value);
   };
 
-  const handleApiSignup = async()=>{
-    const data = await signup({
-      name,
-      email,
-      password,
-      aadharNumber,
-      phoneNumber,
-      address,
-      application,
-      role: selector ? "doctor" :"patient",
-    })
-    console.log(data);
+  const handleApiSignup = async () => {
+    try {
+      const data = await signup({
+        name,
+        email,
+        password,
+        aadharNumber,
+        phoneNumber,
+        address,
+        application,
+        role: patient ? "patient" : "doctor",
+      })
+      console.log(data);
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Implement your login logic here
     const formData = {
       name,
       email,
@@ -74,9 +73,8 @@ const Login = () => {
     };
 
     handleApiSignup();
-    // console.log(data);
+
     console.log('Form Data:', formData);
-    // Reset form fields after submission
     setName('');
     setEmail('');
     setPassword('');
@@ -85,32 +83,27 @@ const Login = () => {
     setAddress('');
   };
 
-  const handleChangeDoctor = () => {
-    console.log(patient,doctor)
-    setDoctor(true);
-    setPatient(false);
-    dispatch(getValue(patient));
-  };
+
 
   const handleChangePatient = () => {
-    console.log(patient,doctor)
-    setDoctor(false);
-    setPatient(true);
-    dispatch(getValue(patient));
+    console.log(patient, doctor)
+    // setDoctor(false);
+    setPatient((prev) => !prev);
+    // dispatch(getValue(patient));
   };
 
   return (
     <div className="flex flex-col justify-center items-center h-screen mt-8">
       <div className="m-2">
-        <Button data={patient} function={handleChangeDoctor} function1={handleChangePatient}/>
-        {/* <button
+        <button
           onClick={handleChangePatient}
-          className={`ml-4 bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
-            patient ? 'bg-blue-700' : ''
-          }`}
+          className={`ml-4 mt-56 bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${patient ? 'bg-blue-700' : ''
+            }`}
         >
-          Are you a Patient
-        </button> */}
+          {
+            patient ? "Are you a Doctor?" : "Are you a Patient?"
+          }
+        </button>
       </div>
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <h2 className="text-2xl mb-4">Login</h2>

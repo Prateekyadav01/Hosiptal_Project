@@ -7,6 +7,7 @@ import { ApiResponse } from '../utils/ApiResponse.js';
 
 export const userSignup = async (req, res) => {
 const {role} = req.body;
+console.log(role);
 
    if(role==='patient'){
     const { name, email, password, aadharNumber, phoneNumber, address } = req.body;
@@ -52,8 +53,8 @@ const {role} = req.body;
     )
    }
    else{
-    const{name,email,password,phoneNumber,address}= req.body;
-    if([name,email,password,phoneNumber,address].some((field)=>typeof field === 'string' && field.trim() === "")){
+    const{name,email,password,phoneNumber,address,application}= req.body;
+    if([name,email,password,phoneNumber,address,role,application].some((field)=>typeof field === 'string' && field.trim() === "")){
         throw new ApiError(400,"All fields are required")
     }
     const existingDoctor = await Doctor.findOne(
@@ -74,6 +75,8 @@ const {role} = req.body;
         email,
         password,
         phoneNumber,
+        application,
+        role,
         address
     })
 

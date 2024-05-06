@@ -33,8 +33,11 @@ const doctorSchema = new mongoose.Schema(
             lowercase: true,
             trim: true,
         },
+        application:{
+            type:Number
+        },
         role:{
-            enum:[]
+            type:String,
         }
         // },
         // hospital_id :{

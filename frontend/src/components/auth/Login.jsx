@@ -55,7 +55,7 @@ const Login = () => {
       phoneNumber,
       address,
       application,
-      role: selector ? "Doctor" :"Patient",
+      role: selector ? "doctor" :"patient",
     })
     console.log(data);
   }

@@ -8,6 +8,7 @@ import Team from './components/Team';
 import Login from './components/auth/Login';
 import Layout from './components/Layout';
 import ContactPage from './components/pages/Contact';
+import Register from './components/auth/Register';
 
 function App() {
 
@@ -35,6 +36,10 @@ function App() {
       path: "/login",
       element: <Login />,
     },
+    {
+      path:"/register",
+      element:<Register/>
+    }
   
   ]);
 

@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { register } from '../../utils/Api';
 
 const Register = () => {
-  const handleSubmit = (e) => {
+  const [email ,setEmail] = useState('');
+  const [password ,setPassword] = useState('');
+  const [role,setRole] =useState(false);
+  const [value,setValue] =useState('Are you a Doctor?');
+
+  const handleRole =()=>{
+    console.log(role);
+    setRole((prev)=> !prev)
+    setValue(role? 'Are you a Doctor?' : 'Are you a Patient?');
+  }
+  const handleSubmit = async(e) => {
+    console.log(email,password)
     e.preventDefault();
+    const data = await register({
+      email,
+      password,
+      role : role ? "patient" :"doctor" 
+    })
     // Add your registration logic here
     // Example: perform validation, fetch data, etc.
     console.log('Form submitted');
@@ -14,10 +31,13 @@ const Register = () => {
     }}>
       <div className="login-container bg-white p-8 rounded-lg shadow-md w-80">
         <h2 className="text-center text-xl mb-4">Register</h2>
+        <h3 className='text-center text-xl mb-4 cursor-pointer' onClick={handleRole}>{value}</h3>
         <form onSubmit={handleSubmit}>
           <input
             type="email"
             id="email"
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
             name="email"
             placeholder="Email"
             className="w-full px-4 py-2 mb-4 border rounded-md"
@@ -26,6 +46,8 @@ const Register = () => {
           <input
             type="password"
             id="password"
+            value={password}
+            onChange={(e)=>setPassword(e.target.value)}
             name="password"
             placeholder="Password"
             className="w-full px-4 py-2 mb-4 border rounded-md"

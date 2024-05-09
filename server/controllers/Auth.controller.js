@@ -4,28 +4,28 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
 const generateAccessAndRefereshTokens = async (userId) => {
-//   try {
+  try {
     const user = await User.findById(userId);
     console.log(user);
-    const accessToken = user.generateAccessToken()
-    const refreshToken = user.generateRefreshToken()
+    const accessToken = user.GenerateAccessToken()
+    const refreshToken = user.GenerateRefreshToken()
 
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false });
-
+    // console.log(refreshToken,accessToken)
     return { accessToken, refreshToken };
-//   } catch (error) {
-//     throw new ApiError(
-//       500,
-//       "Something went wrong while generating referesh and access token"
-//     );
-//   }
+  } catch (error) {
+    throw new ApiError(
+      500,
+      "Something went wrong while generating referesh and access token"
+    );
+  }
 };
 const generateAccessAndRefereshTokensDoctor = async (userId) => {
     try {
       const user = await Doctor.findById(userId);
-      const accessToken = user.generateAccessToken();
-      const refreshToken = user.generateRefreshToken();
+      const accessToken = user.GenerateAccessToken();
+      const refreshToken = user.GenerateRefreshToken();
   
       user.refreshToken = refreshToken;
       await user.save({ validateBeforeSave: false });
@@ -103,7 +103,7 @@ export const userSignup = async (req, res) => {
       throw new ApiError(400, "Doctor already exists");
     }
 
-    const doctor = await existingDoctor.create({
+    const doctor = await Doctor.create({
       name,
       email,
       password,
@@ -158,6 +158,7 @@ export const loginUser = async (req, res) => {
       secure: true,
     };
 
+    console.log(accessToken,refreshToken)
     return res
       .status(200)
       .cookie("accessToken", accessToken, options)
@@ -183,7 +184,7 @@ export const loginUser = async (req, res) => {
     if (!doctor) throw new ApiError(400, "Please first signup");
 
 
-    const paswordCheck = await Doctor.isPasswordDoctorConfirm(password);
+    const paswordCheck = await doctor.isPasswordDoctorConfirm(password);
     if (!paswordCheck) throw new ApiError(400, "Invalid password");
     const { accessToken, refreshToken } = await generateAccessAndRefereshTokensDoctor(
       doctor._id

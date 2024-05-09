@@ -66,7 +66,7 @@ userSchema.methods.isPasswordConfirm = async function (password) {
 
 
 userSchema.methods.GenerateAccessToken = function(){
-    jwt.sign(
+   return jwt.sign(
         {
             _id:this._id,
             name:this.name,
@@ -83,7 +83,7 @@ userSchema.methods.GenerateAccessToken = function(){
 }
 
 userSchema.methods.GenerateRefreshToken = function(){
-    jwt.sign(
+   return jwt.sign(
         {
             _id:this._id,
         },

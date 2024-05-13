@@ -7,12 +7,13 @@ const generateAccessAndRefereshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
     console.log(user);
-    const accessToken = user.GenerateAccessToken()
-    const refreshToken = user.GenerateRefreshToken()
+    const accessToken = user.GenerateAccessToken();
+    const refreshToken = user.GenerateRefreshToken();
 
     user.refreshToken = refreshToken;
-    await user.save({ validateBeforeSave: false });
-    // console.log(refreshToken,accessToken)
+    await user.save({ validateBeforeSave: false })
+
+    console.log(refreshToken,accessToken)
     return { accessToken, refreshToken };
   } catch (error) {
     throw new ApiError(
@@ -21,23 +22,32 @@ const generateAccessAndRefereshTokens = async (userId) => {
     );
   }
 };
-const generateAccessAndRefereshTokensDoctor = async (userId) => {
+
+
+const generateAccessAndRefreshTokensDoctor = async (docId) => {
     try {
-      const user = await Doctor.findById(userId);
+      const user = await Doctor.findById(docId);
+      // console.log(user);
       const accessToken = user.GenerateAccessToken();
       const refreshToken = user.GenerateRefreshToken();
-  
+      console.log("acess"+accessToken + "helllooo" +refreshToken);
       user.refreshToken = refreshToken;
-      await user.save({ validateBeforeSave: false });
-  
+      console.log(user);
+      await user.save({ validateBeforeSave: false })
+      console.log("Access Token:", accessToken);
+    console.log("Refresh Token:", refreshToken);
       return { accessToken, refreshToken };
     } catch (error) {
+      console.log(error);
       throw new ApiError(
         500,
         "Something went wrong while generating referesh and access token"
       );
+     
     }
   };
+
+
 
 export const userSignup = async (req, res) => {
   const { role } = req.body;
@@ -130,6 +140,8 @@ export const userSignup = async (req, res) => {
   }
 };
 
+
+
 export const loginUser = async (req, res) => {
   const { role } = req.body;
   if (role === "patient") {
@@ -186,7 +198,9 @@ export const loginUser = async (req, res) => {
 
     const paswordCheck = await doctor.isPasswordDoctorConfirm(password);
     if (!paswordCheck) throw new ApiError(400, "Invalid password");
-    const { accessToken, refreshToken } = await generateAccessAndRefereshTokensDoctor(
+
+    console.log(doctor._id);
+    const { accessToken, refreshToken } = await generateAccessAndRefreshTokensDoctor(
       doctor._id
     );
     const loggedInDoctor = await Doctor.findById(doctor._id).select(

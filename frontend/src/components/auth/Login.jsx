@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { signup } from '../../utils/Api';
-
+import {useNavigate} from 'react-router-dom'
 
 const Login = () => {
   const [name, setName] = useState('');
@@ -10,35 +10,15 @@ const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
   const [application, setApplication] = useState('');
-
-  const [doctor, setDoctor] = useState(false);
   const [patient, setPatient] = useState(true);
+  const navigate = useNavigate('')
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
+  const handleInputChange = (setter) => (event) => {
+    setter(event.target.value);
   };
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const handleAadharNumberChange = (event) => {
-    setAadharNumber(event.target.value);
-  };
-
-  const handleApplicationChange = (event) => {
-    setApplication(event.target.value);
-  };
-  const handlePhoneNumberChange = (event) => {
-    setPhoneNumber(event.target.value);
-  };
-
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
+  const handleRoleChange = () => {
+    setPatient((prev) => !prev);
   };
 
   const handleApiSignup = async () => {
@@ -51,154 +31,116 @@ const Login = () => {
         phoneNumber,
         address,
         application,
-        role: patient ? "patient" : "doctor",
-      })
+        role: patient ? 'patient' : 'doctor',
+      });
       console.log(data);
-    }
-    catch (e) {
+      if(data){
+        navigate("/register")
+      }
+      // Clear form fields after successful signup
+      setName('');
+      setEmail('');
+      setPassword('');
+      setAadharNumber('');
+      setPhoneNumber('');
+      setAddress('');
+      setApplication('');
+    } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = {
-      name,
-      email,
-      password,
-      aadharNumber,
-      phoneNumber,
-      address,
-      application,
-    };
-
     handleApiSignup();
-
-    console.log('Form Data:', formData);
-    setName('');
-    setEmail('');
-    setPassword('');
-    setAadharNumber('');
-    setPhoneNumber('');
-    setAddress('');
-  };
-
-
-
-  const handleChangePatient = () => {
-    console.log(patient, doctor)
-    // setDoctor(false);
-    setPatient((prev) => !prev);
-    // dispatch(getValue(patient));
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen mt-8">
-      <div className="m-2">
-        <button
-          onClick={handleChangePatient}
-          className={`ml-4 mt-56 bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${patient ? 'bg-blue-700' : ''
-            }`}
-        >
-          {
-            patient ? "Are you a Doctor?" : "Are you a Patient?"
-          }
-        </button>
-      </div>
-      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h2 className="text-2xl mb-4">Signup</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Name:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
-              value={name}
-              onChange={handleNameChange}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Email:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Password:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-              required
-            />
-          </div>
+    <div className="min-h-screen flex justify-center items-center bg-gray-100" style={{
+      backgroundImage: "linear-gradient(rgb(255 225 209),rgb(249 159 159)",
+    }}>
+      <div className="bg-white p-8 rounded shadow-md w-full md:w-2/3 lg:w-1/2 m-10">
+        <h2 className="text-3xl font-bold mb-6 text-center">
+          {patient ? 'Patient Signup' : 'Doctor Signup'}
+        </h2>
+        <div className="mb-4">
+          <button
+            onClick={handleRoleChange}
+            className="bg-gray-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[30vw] flex justify-center ml-24 items-center  focus:outline-none focus:shadow-outline"
+          >
+            {patient ? 'Are you a Doctor?' : 'Are you a Patient?'}
+          </button>
+        </div>
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4">
+          <input
+            className="input-field"
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={handleInputChange(setName)}
+            required
+          />
+          <input
+            className="input-field"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleInputChange(setEmail)}
+            required
+          />
+          <input
+            className="input-field"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={handleInputChange(setPassword)}
+            required
+          />
           {patient ? (
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Aadhar Number:
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                type="number"
-                value={aadharNumber}
-                onChange={handleAadharNumberChange}
-              />
-            </div>
-          ) : (
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Application Id:
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                type="number"
-                value={application}
-                onChange={handleApplicationChange}
-              />
-            </div>
-          )}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
-              Phone Number:
-            </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="tel"
-              value={phoneNumber}
-              onChange={handlePhoneNumberChange}
+              className="input-field"
+              type="number"
+              placeholder="Aadhar Number"
+              value={aadharNumber}
+              onChange={handleInputChange(setAadharNumber)}
             />
-          </div>
+          ) : (
+            <input
+              className="input-field"
+              type="number"
+              placeholder="Application ID"
+              value={application}
+              onChange={handleInputChange(setApplication)}
+            />
+          )}
+          <input
+            className="input-field"
+            type="tel"
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChange={handleInputChange(setPhoneNumber)}
+          />
           {patient && (
-            <div className="mb-6">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Address:
-              </label>
-              <textarea
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={address}
-                onChange={handleAddressChange}
-              />
-            </div>
+            <textarea
+              className="input-field h-20"
+              placeholder="Address"
+              value={address}
+              onChange={handleInputChange(setAddress)}
+            />
           )}
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
+            className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[30vw] flex justify-center ml-24 items-center  focus:outline-none focus:shadow-outline"
           >
             Signup
           </button>
         </form>
+        <p className="text-center text-sm text-gray-600 mt-4">
+          Already have an account?{' '}
+          <a onClick={()=> navigate('/register')} className="text-blue-500 hover:text-blue-700">
+            Register
+          </a>
+        </p>
       </div>
     </div>
   );

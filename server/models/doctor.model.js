@@ -6,7 +6,6 @@ const doctorSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: true,
             lowercase: true,
             trim: true,
         },
@@ -25,8 +24,7 @@ const doctorSchema = new mongoose.Schema(
         },
         phoneNumber: {
             type: Number,
-            required: true,
-            unique: true,
+           
         },
         address: {
             type: String,
@@ -40,23 +38,23 @@ const doctorSchema = new mongoose.Schema(
         role:{
             type:String,
         },
-        refreshToken: {
-            type: String
-        }
         // },
         // hospital_id :{
         //     type: mongoose.Schema.Types.ObjectId,
         //     ref: 'Hospital',
         //     required: true,
         // }
+    },{
+        timestamps:true
     }
 )
 
 
-doctorSchema.pre('save', async function(req,res,next){
+doctorSchema.pre('save', async function(next){
     if(!this.isModified("password")) return next();
 
     this.password = await bcrypt.hash(this.password,10)
+     next();
 })
 
 doctorSchema.methods.isPasswordDoctorConfirm = async function(password){
@@ -64,28 +62,29 @@ doctorSchema.methods.isPasswordDoctorConfirm = async function(password){
 }
 
 doctorSchema.methods.GenerateAccessToken = function(){
-    jwt.sign(
+   return jwt.sign(
         {
             _id:this._id,
             name:this.name,
             email:this.email,
-            phoneNumber:this.phoneNumber,
         },
-         process.env.ACCESS_TOKEN_SECRET,
+         process.env.ACCESS_TOKEN_SECRET_DOC,
         {
-            expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+            expiresIn: process.env.ACCESS_TOKEN_EXPIRY_DOC,
         }
     )
 }
 
 doctorSchema.methods.GenerateRefreshToken = function(){
-    jwt.sign(
+  return jwt.sign(
         {
             _id:this._id,
+            name:this.name,
+            email:this.email
         },
-         process.env.REFRESH_TOKEN_SECRET,
+         process.env.REFRESH_TOKEN_SECRET_DOC,
         {
-            expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
+            expiresIn: process.env.REFRESH_TOKEN_EXPIRY_DOC,
         }
     )
 }

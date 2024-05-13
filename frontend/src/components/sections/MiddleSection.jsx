@@ -23,7 +23,7 @@ const MiddleSection = () => {
     // }, []);
 
     return (
-        <div className="relative top-16 w-full pt-4 pb-4 bg-gray-300 h-[80vh]">
+        <div className="relative  w-full pt-4 pb-4 bg-gray-300 h-[80vh]">
             <h1 className="text-3xl font-bold text-center mb-8">Hospital Extension</h1>
             <div className="flex items-center justify-center space-x-4">
                 <button

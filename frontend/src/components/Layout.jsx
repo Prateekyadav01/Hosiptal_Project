@@ -14,7 +14,7 @@ const Layout = () => {
       <Section1/>
       <Section2/>
       <Footer/>
-      <Home/>
+      {/* <Home/> */}
       
     </div>
   )

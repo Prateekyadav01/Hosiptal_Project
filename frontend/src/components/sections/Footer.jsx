@@ -8,7 +8,7 @@ const Footer = () => {
             <h3 class="text-xl font-bold">Contact Us</h3>
             <p class="mt-2">123 Hospital Ave, City, Country</p>
             <p>Phone: +123 456 7890</p>
-            <p>Email: info@example.com</p>
+            <p>Email: prateeky572@gmail.com</p>
         </div>
         <div class="mb-4 md:mb-0">
             <h3 class="text-xl font-bold">Quick Links</h3>

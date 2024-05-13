@@ -8,8 +8,8 @@ const Card = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col w-1/2 md:w-1/3 lg:w-1/4 p-4 items-center justify-center bg-gray-400 rounded-md">
-      <div className="border border-gray-300 rounded-lg shadow-md p-6 bg-white w-full">
+    <div className="flex flex-col w-1/2 md:w-1/3 lg:w-1/4 p-4 items-center justify-center  rounded-md">
+      <div className="border border-gray-300 rounded-lg shadow-md p-6 bg-white w-full bg-slate-300">
         <h1 className="text-xl font-bold mb-4">{data.disease}</h1>
         <p className="text-gray-700">{data.Description}</p>
         {check && <p className="text-gray-700 mt-4">{data.readMore}</p>}

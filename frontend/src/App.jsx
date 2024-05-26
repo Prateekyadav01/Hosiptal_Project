@@ -3,19 +3,20 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Home from './components/Home';
-import Team from './components/Team';
+
 import Login from './components/auth/Login';
 import Layout from './components/Layout';
 import ContactPage from './components/pages/Contact';
 import Register from './components/auth/Register';
+import Medicine from './components/Medicine/Medicine';
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />
+      // element: <Layout />
+      element:<Medicine/>
     },
     {
       path: "/contact",
@@ -24,6 +25,12 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+      children:[
+        {
+          path:'medicine',
+          element:<Medicine/>
+        }
+      ]
     },
     {
       path: "/register",

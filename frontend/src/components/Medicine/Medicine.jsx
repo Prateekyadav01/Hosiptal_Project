@@ -4,13 +4,10 @@ import { medicine } from '../../assets/constants';
 function reducer(state, action) {
   switch (action.type) {
     case 'ADD_CART':
-      console.log("hello"+action.payload);
       const existingItemIndex = state.cart.findIndex(
         (item) => item.name === action.payload.name
       );
-      console.log(existingItemIndex);
-      if (existingItemIndex!==-1) {
-        console.log("ander");
+      if (existingItemIndex !== -1) {
         return {
           ...state,
           cart: state.cart.map((item, index) =>
@@ -19,15 +16,12 @@ function reducer(state, action) {
               : item
           ),
         };
-      }
-      else{
-        console.log("dusre wle ke andr")
+      } else {
         return {
           ...state,
-          cart: [...state.cart,{ ...action.payload ,quantity:1 }],
-        }
+          cart: [...state.cart, { ...action.payload, quantity: 1 }],
+        };
       }
-        
     case 'CART_INCREMENT': {
       return {
         ...state,
@@ -73,7 +67,6 @@ const Medicine = () => {
   const [state, dispatch] = useReducer(reducer, initialValue);
 
   const handleAddCart = (item) => {
-    console.log(item.name);
     dispatch({ type: 'ADD_CART', payload: item });
   };
 
@@ -85,11 +78,15 @@ const Medicine = () => {
     dispatch({ type: 'CART_DECREMENT', payload: id });
   };
 
+  const calculateTotal = () => {
+    return state.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+  };
+
   return (
     <div className="p-4" style={{
       backgroundImage: "linear-gradient(rgb(255 225 209),rgb(249 159 159)",
     }}>
-      <h1 className="text-2xl font-bold mb-4">Medicine Store</h1>
+      <h1 className="text-2xl font-bold flex items-center justify-center mb-4">Medicine Store</h1>
       <div className="flex flex-col md:flex-row md:space-x-4">
         <div className="md:w-1/2 p-4 bg-white rounded-lg shadow-md">
           <h2 className="text-2xl font-bold mb-4">Medicine</h2>
@@ -108,13 +105,13 @@ const Medicine = () => {
             ))}
           </div>
         </div>
-        <div className="md:w-1/2 p-4 bg-white rounded-lg shadow-md mt-4 md:mt-0 h-fit">
+        <div className="md:w-1/2 p-4 bg-white sticky top-10 rounded-lg shadow-md mt-4 md:mt-0 h-fit">
           <h2 className="text-2xl font-bold mb-4">Cart</h2>
           <div className="space-y-4">
             {state.cart.length > 0 ? (
               state.cart.map((item, index) => (
                 <div key={index} className="border p-4 rounded-lg shadow-sm bg-gray-50 flex items-center justify-between">
-                  <div>
+                  <div className='flex gap-3'>
                     <h3 className="text-xl font-semibold">{item.name}</h3>
                     <p className="text-gray-600">${item.price}</p>
                   </div>
@@ -127,6 +124,9 @@ const Medicine = () => {
               ))
             ) : (
               <p className="text-gray-600">Your cart is empty.</p>
+            )}
+            {state.cart.length > 0 && (
+              <h3 className='flex items-center justify-center font-bold'>Total: ${calculateTotal().toFixed(2)}</h3>
             )}
           </div>
         </div>

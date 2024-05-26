@@ -126,7 +126,7 @@ const Medicine = () => {
               <p className="text-gray-600">Your cart is empty.</p>
             )}
             {state.cart.length > 0 && (
-              <h3 className='flex items-center justify-center font-bold'>Total: ${calculateTotal().toFixed(2)}</h3>
+              <h3 className='flex items-center justify-center font-bold'>Total: ${calculateTotal()}</h3>
             )}
           </div>
         </div>

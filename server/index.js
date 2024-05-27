@@ -1,12 +1,13 @@
 // require('dotenv').config({path: './env'})
 import dotenv from "dotenv"
 import connectDB from "./config/database.js";
+import mongoose from 'mongoose'
 import {app} from './app.js'
 dotenv.config({
     path: './.env'
 })
 
-
+mongoose.set('strictQuery', false);
 
 connectDB()
 .then(() => {

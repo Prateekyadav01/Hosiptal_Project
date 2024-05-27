@@ -66,14 +66,12 @@ userSchema.methods.isPasswordConfirm = async function (password) {
 
 
 userSchema.methods.GenerateAccessToken = function(){
+    console.log("accesssToken--------->access")
    return jwt.sign(
         {
             _id:this._id,
             name:this.name,
             email:this.email,
-            aadharNumber:this.aadharNumber,
-            phoneNumber:this.phoneNumber,
-            address:this.address
         },
          process.env.ACCESS_TOKEN_SECRET,
         {
@@ -83,6 +81,7 @@ userSchema.methods.GenerateAccessToken = function(){
 }
 
 userSchema.methods.GenerateRefreshToken = function(){
+    console.log("refreshToken ---------------refresh")
    return jwt.sign(
         {
             _id:this._id,

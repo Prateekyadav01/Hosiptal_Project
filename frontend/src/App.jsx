@@ -15,8 +15,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      // element: <Layout />
-      element:<Medicine/>
+      element: <Layout />
     },
     {
       path: "/contact",
@@ -25,17 +24,18 @@ function App() {
     {
       path: "/login",
       element: <Login />,
-      children:[
-        {
-          path:'medicine',
-          element:<Medicine/>
-        }
-      ]
+      
     },
     {
       path: "/register",
       element: <Register />
-    }
+      
+    },{
+      
+        path:'/medicine',
+        element:<Medicine/>
+      }
+    
   ]);
 
   return (

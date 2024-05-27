@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { register } from '../../utils/Api';
 import { ToastContainer, toast } from 'react-toastify';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState(false);
   const [value, setValue] = useState('Doctor Login');
+  const navigator = useNavigate();
 
   const handleRole = () => {
     setRole((prev) => !prev);
@@ -22,7 +24,9 @@ const Register = () => {
     });
     console.log('Form submitted');
     if(data){
-      toast.success("Registered Successfully")
+      toast.success("Registered Successfully");
+      navigator("/medicine")
+      
     }
     else{
       toast.error("Registration Failed")
@@ -68,6 +72,7 @@ const Register = () => {
         </div>
       </div>
       <ToastContainer/>
+      <Outlet/>
     </div>
   );
 };

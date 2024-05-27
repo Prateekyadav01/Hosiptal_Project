@@ -1,9 +1,9 @@
 import axios from 'axios';
-
+const baseURL = "https://hosiptal-project.onrender.com/api/v1";
 export const signup = async ({ email, name, password, address, phoneNumber, aadharNumber, application, role }) => {
     try {
 
-        const response = await axios.post("https://hosiptal-project.onrender.com/api/v1/auth/userSignup", {
+        const response = await axios.post(`${baseURL}/auth/userSignup`, {
             email,
             name,
             password,
@@ -28,7 +28,7 @@ export const signup = async ({ email, name, password, address, phoneNumber, aadh
 
 export const register = async({email,password,role})=>{
     try{
-        const response = await axios.post("https://hosiptal-project.onrender.com/api/v1/auth/register" ,
+        const response = await axios.post(`${baseURL}/auth/register` ,
             {
                 email,
                 password,

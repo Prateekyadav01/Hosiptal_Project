@@ -16,10 +16,10 @@ export const otp = async(req,res)=>{
         // async function main() {
             // send mail with defined transport object
             const info = await transporter.sendMail({
-              from: '"Maddison Foo Koch 👻" <maddison53@ethereal.email>', // sender address
+              from: '"Maddison Foo Koch 👻" <jazmyne43@ethereal.email>', // sender address
               to: "prateeky562@gmail.com", // list of receivers
               subject: "Hello ✔", // Subject line
-              text: "Hello world?", // plain text body
+              text: "Hello mailll?", // plain text body
               html: "<b>Hello world?</b>", // html body
             });
           

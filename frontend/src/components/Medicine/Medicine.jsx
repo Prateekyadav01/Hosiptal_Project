@@ -86,7 +86,7 @@ const Medicine = () => {
     <div className="p-4" style={{
       backgroundImage: "linear-gradient(rgb(255 225 209),rgb(249 159 159)",
     }}>
-      <h1 className="text-2xl font-bold flex items-center justify-center mb-4">Medicine Store</h1>
+      <h1 className="text-2xl font-bold flex items-center justify-center mb-4">Medical Store</h1>
       <div className="flex flex-col md:flex-row md:space-x-4">
         <div className="md:w-1/2 p-4 bg-white rounded-lg shadow-md">
           <h2 className="text-2xl font-bold mb-4">Medicine</h2>

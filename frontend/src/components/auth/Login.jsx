@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { signup } from '../../utils/Api';
 import {useNavigate} from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
   const [name, setName] = useState('');
@@ -35,6 +36,8 @@ const Login = () => {
       });
       console.log(data);
       if(data){
+        toast.success("Signup successful")
+        toast.success("Signup successful")
         navigate("/register")
       }
       // Clear form fields after successful signup
@@ -142,6 +145,7 @@ const Login = () => {
           </a>
         </p>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

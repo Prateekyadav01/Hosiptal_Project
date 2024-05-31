@@ -3,6 +3,9 @@ import { Doctor } from "../models/doctor.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
+import otpGenrator from 'otp-generator'
+import { OTP } from '../models/otp.model.js';
+
 const generateAccessAndRefereshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
@@ -91,6 +94,16 @@ export const userSignup = async (req, res) => {
         "User not created something went wrong while creating"
       );
     }
+    const otp = otpGenrator.generate(6);
+        console.log(otp);
+        const createOtp= await OTP.create({
+            otp,
+            email
+        })
+        console.log(otp);
+        if(!createOtp){
+          throw new ApiError(500,"Something went wrong while creating OTP")
+        }
 
     return res
       .status(200)
@@ -131,7 +144,17 @@ export const userSignup = async (req, res) => {
         "Doctor not created something went wrong while creating"
       );
     }
-
+    const otp = otpGenrator.generate(6);
+    console.log(otp);
+    const createOtp= await OTP.create({
+        otp,
+        email
+    })
+    console.log(otp);
+    if(!createOtp){
+      throw new ApiError(500,"Something went wrong while creating OTP")
+    }
+    
     return res
       .status(200)
       .json(

@@ -52,7 +52,7 @@ const doctorSchema = new mongoose.Schema(
 
 doctorSchema.pre('save', async function(next){
     if(!this.isModified("password")) return next();
-
+    console.log("------------->DOctor")
     this.password = await bcrypt.hash(this.password,10)
      next();
 })

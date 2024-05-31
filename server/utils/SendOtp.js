@@ -4,6 +4,7 @@ import {OTP} from '../models/otp.model.js'
 
 export const mailSender = async (email, title, body) => {
   try {
+    console.log("-----------> In a transporter" , email , title);
     let transporter = nodemailer.createTransport({
       host: process.env.MAIL_HOST,
       auth: {

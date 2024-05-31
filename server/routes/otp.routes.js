@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { sendOTPVerification} from '../controllers/OTP.controller.js'
+import { sendOTPVerification} from '../controllers/VerifyOTP.controller.js'
 
 
 const router = Router()

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { OTPCheck } from '../../utils/Api';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const OtpConfirmation = () => {
     const selector = useSelector((store)=> store.email.email)
+    const navigator = useNavigate()
     console.log(selector);
   const [otp, setOtp] = useState('');
   const [message, setMessage] = useState('');
@@ -19,11 +22,14 @@ const OtpConfirmation = () => {
 
   const checkingOTP = async()=>{
     try {
+      console.log(otp);
       const response = await OTPCheck(selector,otp);
       console.log(response);
       if(response){
         console.log("verofied");
         setMessage("OTP Verified");
+        await toast.success("OTP Verified");
+        navigator('/register')
       }
     } catch (error) {
       console.log(error);
@@ -56,6 +62,7 @@ const OtpConfirmation = () => {
         </form>
         {message && <p className="mt-4 text-center text-green-600">{message}</p>}
       </div>
+      <ToastContainer/>
     </div>
   );
 };

@@ -43,3 +43,18 @@ export const register = async({email,password,role})=>{
         console.log(err);
     }
 }
+
+
+export const OTPCheck = async({email,otp})=>{
+    try {
+        const response = await axios.get("http://localhost:3000/api/v1/auth/sendotp", {
+            email,
+            otp
+        },{
+            withCredentials:true
+        })
+        return response.data;
+    } catch (error) {
+        console.log("error getting verify in otp", error);
+    }
+}

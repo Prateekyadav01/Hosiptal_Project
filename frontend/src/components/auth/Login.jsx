@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { signup } from '../../utils/Api';
 import {useNavigate} from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
+import {useDispatch} from 'react-redux'
+import { getEmail } from '../../utils/slice/otpEmail';
 
 const Login = () => {
   const [name, setName] = useState('');
@@ -13,6 +15,7 @@ const Login = () => {
   const [application, setApplication] = useState('');
   const [patient, setPatient] = useState(true);
   const navigate = useNavigate('')
+  const dispatch = useDispatch();
 
   const handleInputChange = (setter) => (event) => {
     setter(event.target.value);
@@ -38,7 +41,8 @@ const Login = () => {
       if(data){
         toast.success("Signup successful")
         toast.success("Signup successful")
-        navigate("/register")
+        dispatch(getEmail(email));
+        navigate("/otp-verify")
       }
       // Clear form fields after successful signup
       setName('');

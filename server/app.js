@@ -21,7 +21,7 @@ import otpRoutes from './routes/otp.routes.js'
 //routes declaration
 
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1', otpRoutes);
+app.use('/api/v1/auth', otpRoutes);
 
 // http://localhost:8000/api/v1/users/register
 

@@ -2,9 +2,18 @@
 import nodemailer from "nodemailer"
 import {OTP} from '../models/otp.model.js'
 
-export const mailSender = async (email, title, body) => {
+export const mailSender = async (email, title, body,otp) => {
   try {
-    console.log("-----------> In a transporter" , email , title);
+    console.log("-----------> In a transporter" , email  ,otp);
+    const emailCheck = await OTP.find({email});
+    if(!emailCheck){
+      return res.status(400).json({
+        message: "Email not found"
+      })
+    }
+
+    const otpValue = emailCheck.otp;
+    console.log("------------->", otp);
     let transporter = nodemailer.createTransport({
       host: process.env.MAIL_HOST,
       auth: {
@@ -19,7 +28,7 @@ export const mailSender = async (email, title, body) => {
       from: `"Prateek | HealthCare" <${process.env.MAIL_USER}>`, // sender address
       to: `${email}`, // list of receivers
       subject: `${title}`, // Subject line
-      html: `${OTP}`, // html body
+      html: `${body}`, // html body
     })
     console.log(info.response)
     return info

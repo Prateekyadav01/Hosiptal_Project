@@ -45,7 +45,8 @@ export const register = async({email,password,role})=>{
 }
 
 
-export const OTPCheck = async({email,otp})=>{
+export const OTPCheck = async(email,otp)=>{
+    console.log(email+"     " +  otp)
     try {
         const response = await axios.get("http://localhost:3000/api/v1/auth/sendotp", {
             email,

@@ -4,7 +4,7 @@ export const sendOTPVerification = async (req, res) => {
     try {
         const { email, otp } = req.body;
 
-        // Find the OTP record for the provided email
+        
         const emailExisting = await OTP.findOne({ email });
 
         // Check if the email is registered
@@ -15,6 +15,7 @@ export const sendOTPVerification = async (req, res) => {
         }
 
         // Verify the provided OTP with the stored OTP
+        console.log("existingOTP-----", emailExisting.otp)
         if (emailExisting.otp !== otp) {
             return res.status(400).json({
                 message: "Incorrect OTP"

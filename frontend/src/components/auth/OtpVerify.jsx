@@ -21,7 +21,8 @@ const OtpConfirmation = () => {
     try {
       const response = await OTPCheck(selector,otp);
       console.log(response);
-      if(response.status === 200){
+      if(response){
+        console.log("verofied");
         setMessage("OTP Verified");
       }
     } catch (error) {

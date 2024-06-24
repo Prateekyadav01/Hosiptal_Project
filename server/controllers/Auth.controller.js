@@ -100,8 +100,8 @@ export const userSignup = async (req, res) => {
             otp,
             email
         })
-        console.log(otp);
-        
+        console.log("otp_",otp);
+
         if(!createOtp){
           throw new ApiError(500,"Something went wrong while creating OTP")
         }

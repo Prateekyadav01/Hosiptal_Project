@@ -1,160 +1,80 @@
 import React, { useState } from 'react';
-import { signup } from '../../utils/Api';
-import { useNavigate } from 'react-router-dom';
+import { register } from '../../utils/Api';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Outlet, useNavigate } from 'react-router-dom';
 
-const Login = () => {
-  const [name, setName] = useState('');
+const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [aadharNumber, setAadharNumber] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [address, setAddress] = useState('');
-  const [application, setApplication] = useState('');
-  const [patient, setPatient] = useState(true);
-  const navigate = useNavigate('');
+  const [role, setRole] = useState(false);
+  const [value, setValue] = useState('Doctor Login');
+  const navigator = useNavigate();
 
-  const handleInputChange = (setter) => (event) => {
-    setter(event.target.value);
+  const handleRole = () => {
+    setRole((prev) => !prev);
+    setValue(role ? 'Doctor Login (click for patient)' : 'Patient Login (click for doctor)');
   };
 
-  const handleRoleChange = () => {
-    setPatient((prev) => !prev);
-  };
-
-  const handleApiSignup = async () => {
-    try {
-      const data = await signup({
-        name,
-        email,
-        password,
-        aadharNumber,
-        phoneNumber,
-        address,
-        application,
-        role: patient ? 'patient' : 'doctor',
-      });
-      
-      console.log(data);
-      if (data) {
-         toast.success('Signup successful');
-        navigate('/otp-verify');
-      }
-      // Clear form fields after successful signup
-      setName('');
-      setEmail('');
-      setPassword('');
-      setAadharNumber('');
-      setPhoneNumber('');
-      setAddress('');
-      setApplication('');
-    } catch (e) {
-      console.log(e);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(role?"patient" :"doctor");
+    const data = await register({
+      email,
+      password,
+      role: role ? 'patient' : 'doctor',
+    });
+    console.log(data,'------>Form submitted');
+    if(data){
+      toast.success("Registered Successfully");
+      navigator("/medicine")
+    }
+    else{
+      toast.error("Registration Failed")
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    handleApiSignup();
-  };
-
   return (
-    <div
-      className="min-h-screen flex justify-center items-center bg-gray-100"
-      style={{
-        backgroundImage: 'linear-gradient(rgb(255 225 209),rgb(249 159 159)',
-      }}
-    >
-      <div className="bg-white p-8 rounded shadow-md w-full md:w-2/3 lg:w-1/2 m-10">
-        <h2 className="text-3xl font-bold mb-6 text-center">
-          {patient ? 'Patient Signup' : 'Doctor Signup'}
-        </h2>
-        <div className="mb-4">
-          <button
-            onClick={handleRoleChange}
-            className="bg-gray-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[30vw] flex justify-center ml-24 items-center  focus:outline-none focus:shadow-outline"
-          >
-            {patient ? 'Are you a Doctor?' : 'Are you a Patient?'}
-          </button>
-        </div>
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4">
+    <div className="flex justify-center items-center h-screen bg-gradient-to-r from-pink-200 to-yellow-200">
+      <div className="login-container bg-white p-8 rounded-lg shadow-md w-80">
+        <h2 className="text-center text-2xl mb-4 font-bold">Register</h2>
+        <h3 className="text-center text-lg mb-6 cursor-pointer text-gray-600" onClick={handleRole}>
+          {value}
+        </h3>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
-            className="input-field"
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={handleInputChange(setName)}
-            required
-          />
-          <input
-            className="input-field"
             type="email"
-            placeholder="Email"
             value={email}
-            onChange={handleInputChange(setEmail)}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-pink-500"
             required
           />
           <input
-            className="input-field"
             type="password"
-            placeholder="Password"
             value={password}
-            onChange={handleInputChange(setPassword)}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-pink-500"
             required
           />
-          {patient ? (
-            <input
-              className="input-field"
-              type="number"
-              placeholder="Aadhar Number"
-              value={aadharNumber}
-              onChange={handleInputChange(setAadharNumber)}
-            />
-          ) : (
-            <input
-              className="input-field"
-              type="number"
-              placeholder="Application ID"
-              value={application}
-              onChange={handleInputChange(setApplication)}
-            />
-          )}
-          <input
-            className="input-field"
-            type="tel"
-            placeholder="Phone Number"
-            value={phoneNumber}
-            onChange={handleInputChange(setPhoneNumber)}
-          />
-          {patient && (
-            <textarea
-              className="input-field h-20"
-              placeholder="Address"
-              value={address}
-              onChange={handleInputChange(setAddress)}
-            />
-          )}
           <button
             type="submit"
-            className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[30vw] flex justify-center ml-24 items-center  focus:outline-none focus:shadow-outline"
-          >
-            Signup
-          </button>
-        </form>
-        <p className="text-center text-sm text-gray-600 mt-4">
-          Already have an account?{' '}
-          <a
-            onClick={() => navigate('/register')}
-            className="text-blue-500 hover:text-blue-700"
+            className="w-full bg-pink-500 text-white px-4 py-2 rounded-md text-center font-semibold transition-colors duration-300 ease-in-out hover:bg-pink-600"
           >
             Register
+          </button>
+        </form>
+        <div className="flex justify-center mt-4">
+          <p className="text-sm text-gray-600">Already have an account?</p>
+          <a href="/login" className="text-blue-500 hover:text-blue-700 ml-1 font-semibold">
+            Log in
           </a>
-        </p>
+        </div>
       </div>
-      <ToastContainer />
+      <ToastContainer/>
+      <Outlet/>
     </div>
   );
 };
 
-export default Login;
+export default Register;

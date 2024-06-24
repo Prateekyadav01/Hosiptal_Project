@@ -10,13 +10,14 @@ import ContactPage from './components/pages/Contact';
 import Register from './components/auth/Register';
 import Medicine from './components/Medicine/Medicine';
 import OtpConfirmation from './components/auth/OtpVerify';
+import Appoint from './components/appointment/Appoint';
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />
+      element: <Appoint />
     },
     {
       path: "/contact",

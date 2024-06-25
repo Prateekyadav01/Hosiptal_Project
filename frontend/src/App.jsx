@@ -17,7 +17,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Appoint />
+      element: <Layout />
     },
     {
       path: "/contact",
@@ -39,6 +39,10 @@ function App() {
       
         path:'/medicine',
         element:<Medicine/>
+      }
+      ,{
+        path:'/appointment',
+        element:<Appoint/>
       }
     
   ]);

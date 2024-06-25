@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ICU from '../../assets/assets/Images/ICU.avif'
+import { appointAPI } from '../../utils/Api';
 
 const departments = [
   { id: 1, name: 'Cardiology' },
@@ -24,13 +25,22 @@ function Appoint() {
     const { name, value } = e.target;
     setAppointmentDetails({ ...appointmentDetails, [name]: value });
   };
-
+  const getAppoint =async()=>{
+    try {
+        console.log("data for appointment")
+        const data = await appointAPI(selectedDepartment.name , appointmentDetails.name, appointmentDetails.date,appointmentDetails.time)
+        console.log(data);
+    } catch (error) {
+        
+    }
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!selectedDepartment) {
       alert('Please select a department.');
       return;
     }
+    getAppoint();
     alert(`Appointment booked for ${appointmentDetails.name} in ${selectedDepartment.name} on ${appointmentDetails.date} at ${appointmentDetails.time}.`);
   };
 

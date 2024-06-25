@@ -1,9 +1,16 @@
 import React from 'react';
 import Hero1 from '../../assets/images/Hero1Image.png';
 import ButtonAll from '../common/ButtonAll';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
+    const selector = useSelector((store)=>store.user);
+    const navigate = useNavigate();
     const handleAppointment = () => {
+        if(selector.isLoggedIn){
+            navigate('/appointment');
+        }
         console.log('Appointment');
     };
 

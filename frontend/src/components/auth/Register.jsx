@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { register } from '../../utils/Api';
 import { ToastContainer, toast } from 'react-toastify';
 import { Outlet, useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../utils/slice/userSlice';
+
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -9,6 +13,7 @@ const Register = () => {
   const [role, setRole] = useState(false);
   const [value, setValue] = useState('Doctor Login');
   const navigator = useNavigate();
+  const dispatch = useDispatch();
 
   const handleRole = () => {
     setRole((prev) => !prev);
@@ -26,7 +31,23 @@ const Register = () => {
     console.log(data,'------>Form submitted');
     if(data){
       toast.success("Registered Successfully");
-      navigator("/medicine")
+      if(role){
+        dispatch(setUser({
+          user: data?.data?.user,
+          isLoggedIn:true,
+          isAdmin:false,
+        }))
+        navigator("/");
+      }
+      else{
+        dispatch(setUser({
+          user: data?.data?.user,
+          isLoggedIn:true,
+          isAdmin:true,
+        }))
+        navigator("/");
+      }
+
     }
     else{
       toast.error("Registration Failed")

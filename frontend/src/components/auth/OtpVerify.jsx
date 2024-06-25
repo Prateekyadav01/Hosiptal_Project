@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { OTPCheck } from '../../utils/Api';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OtpConfirmation = () => {
     const selector = useSelector((store)=> store.email.email)
@@ -28,10 +29,11 @@ const OtpConfirmation = () => {
       if(response){
         console.log("verofied");
         setMessage("OTP Verified");
-        await toast.success("OTP Verified");
+       toast.success("OTP Verified");
         navigator('/register')
       }
     } catch (error) {
+      toast.error(error.message);
       console.log(error);
       setMessage("Invalid OTP");
     }

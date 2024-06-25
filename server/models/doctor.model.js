@@ -6,7 +6,7 @@ const doctorSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            lowercase: true,
+            // lowercase: true,
             trim: true,
         },
         email: {

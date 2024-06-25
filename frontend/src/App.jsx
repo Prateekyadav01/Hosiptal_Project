@@ -11,6 +11,7 @@ import Register from './components/auth/Register';
 import Medicine from './components/Medicine/Medicine';
 import OtpConfirmation from './components/auth/OtpVerify';
 import Appoint from './components/appointment/Appoint';
+import Details from './components/appointment/Details';
 
 function App() {
 
@@ -22,6 +23,10 @@ function App() {
     {
       path: "/contact",
       element: <ContactPage />
+    },
+    {
+      path:"/section/:id",
+      element : <Details/>
     },
     {
       path: "/login",

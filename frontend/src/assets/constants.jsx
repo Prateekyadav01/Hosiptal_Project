@@ -30,100 +30,113 @@ export const images = [
 
 export const doctorData = [
   {
+    id: 1,
     disease: "Emergency Care",
-    Description:
-      "Emergency Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Emergency Care is very useful Emergency Care is crucial in medical practice, especially in situations where immediate intervention can mean the difference between life and death. It encompasses the rapid assessment, stabilization, and treatment of patients facing acute medical conditions or injuries. Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize emergencies, click on the link below nowadays people do not know when it might be needed ",
     readMore: "Read more information",
   },
   {
+    id: 2,
     disease: "Dental Care",
-    Description:
-      "Dental Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Dental Care is very useful nowadays; Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize people do not know when it might be needed.",
     readMore: "Read more information",
   },
   {
+    id: 3,
     disease: "Skin Care",
-    Description:
-      "Skin Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Skin Care is very useful nowadays;  Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize people do not know when it might be needed.",
     readMore: "Read more information",
   },
   {
+    id: 4,
     disease: "Eye Care",
-    Description:
-      "Eye Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Eye Care is very useful nowadays;  Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize people do not know when it might be needed.",
     readMore: "Read more information",
   },
   {
+    id: 5,
     disease: "Heart Care",
-    Description:
-      "Heart Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Heart Care is very useful nowadays;  Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize people do not know when it might be needed.",
     readMore: "Read more information",
   },
   {
+    id: 6,
     disease: "Diabetes Care",
-    Description:
-      "Diabetes Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Diabetes Care is very useful nowadays;  Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize people do not know when it might be needed.",
     readMore: "Read more information",
   },
   {
+    id: 7,
     disease: "Cancer Care",
-    Description:
-      "Cancer Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Cancer Care is very useful nowadays; people do not know when it might be needed  Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize.",
     readMore: "Read more information",
   },
   {
+    id: 8,
     disease: "Allergy Care",
-    Description:
-      "Allergy Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Allergy Care is very useful nowadays; people do not know when it might be needed.  Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize",
     readMore: "Read more information",
   },
   {
+    id: 9,
     disease: "Gastrointestinal Care",
-    Description:
-      "Gastrointestinal Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Gastrointestinal Care is very useful nowadays; people do not know when it might be needed.  Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize",
     readMore: "Read more information",
   },
   {
+    id: 10,
     disease: "Respiratory Care",
-    Description:
-      "Respiratory Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Respiratory Care is very useful nowadays; people do not know when it might be needed.  Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize",
     readMore: "Read more information",
   },
   {
+    id: 11,
     disease: "Liver Care",
-    Description:
-      "Liver Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Liver Care is very useful nowadays; people do not know when it might be needed.  Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize",
     readMore: "Read more information",
   },
   {
+    id: 12,
     disease: "Lung Care",
-    Description:
-      "Lung Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Lung Care is very useful nowadays; people do not know when it might be needed. Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize",
     readMore: "Read more information",
   },
   {
+    id: 13,
     disease: "Thyroid Care",
-    Description:
-      "Thyroid Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Thyroid Care is very useful nowadays; people do not know when it might be needed. Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize",
     readMore: "Read more information",
   },
   {
+    id: 14,
     disease: "Hepatitis Care",
-    Description:
-      "Hepatitis Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Hepatitis Care is very useful nowadays; people do not know when it might be needed. Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize",
     readMore: "Read more information",
-  },{
+  },
+  {
+    id: 15,
     disease: "Pregnancy Care",
-    Description:
-      "Pregnancy Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Pregnancy Care is very useful nowadays; people do not know when it might be needed. Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize",
+    readMore: "Read more information",
+  },
+  {
+    id: 16,
+    disease: "Pain Care",
+    Description: "Pain Care is very useful nowadays; people do not know when it might be needed. Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize",
     readMore: "Read more information",
   },{
+    id: 16,
     disease: "Pain Care",
-    Description:
-      "Pain Care is very useful in nowadays,people donot know when to happen or not",
+    Description: "Pain Care is very useful nowadays; people do not know when it might be needed. Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize",
+    readMore: "Read more information",
+  },{
+    id: 16,
+    disease: "Pain Care",
+    Description: "Pain Care is very useful nowadays; people do not know when it might be needed. Emergency care settings include hospital emergency departments, urgent care centers, and ambulance services.\n\nIn emergency situations, medical professionals must act swiftly to diagnose the problem, provide necessary treatments such as CPR, administer medications, and prepare patients for further care or surgery. The goal is to stabilize patients and prevent complications until they can receive definitive care.\n\nCommon conditions requiring emergency care include heart attacks, strokes, severe injuries from accidents or falls, allergic reactions, and respiratory distress. Timely access to emergency medical services is critical for improving outcomes and reducing morbidity and mortality.\n\nEmergency care providers are trained to handle a wide range of medical emergencies, from managing trauma victims to treating acute illnesses. They collaborate with specialists in various fields to ensure comprehensive care. Education about recognizing symptoms of emergencies and knowing when to seek immediate medical help is essential for the general public.\n\nTo learn more about emergency care and how to recognize",
     readMore: "Read more information",
   }
 ];
+
 
 
 export const medicine =[

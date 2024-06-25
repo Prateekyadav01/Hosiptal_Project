@@ -9,7 +9,9 @@ const Section2 = () => {
   const navigate = useNavigate();
 
   const handleParams = (id) => {
-    navigate(`/section/${id}`);
+    if(selector?.user?.user?.name){
+      navigate(`/section/${id}`);
+    }
   };
 
   return (

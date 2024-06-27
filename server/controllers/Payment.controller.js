@@ -54,7 +54,7 @@ export const verifyPayment = async(req,res)=>{
         const sign = razorpay_order_id + "|" + razorpay_payment_id;
 
         
-        const expectedSign = crypto.createHmac("sha256", ({}).RAZORPAY_SECRET)
+        const expectedSign = crypto.createHmac("sha256", process.env.RAZORPAY_SECRET)
             .update(sign.toString())
             .digest("hex");
 
@@ -71,7 +71,7 @@ export const verifyPayment = async(req,res)=>{
             });
 
             // Save Payment 
-            await Payment.save();
+            await payment.save();
             // await payment.save();
 
             // Send Message 

@@ -18,11 +18,13 @@ app.use(cookieParser())
 import authRoutes from './routes/auth.routes.js';
 import otpRoutes from './routes/otp.routes.js'
 import appointRoute from './routes/appoint.routes.js'
+import payment from './routes/payment.routes.js'
 //routes declaration
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/auth', otpRoutes);
 app.use('/api/v1/appoint',appointRoute);
+app.use('/api/v1/payment',payment);
 
 // http://localhost:8000/api/v1/users/register
 

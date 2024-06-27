@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ICU from '../../assets/assets/Images/ICU.avif'
 import { appointAPI } from '../../utils/Api';
+import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const departments = [
   { id: 1, name: 'Cardiology' },
@@ -15,6 +17,7 @@ function Appoint() {
     date: '',
     time: ''
   });
+  const navigate = useNavigate();
 //   console.log(selectedDepartment.name);
   const handleDepartmentClick = (department) => {
     setSelectedDepartment(department);
@@ -29,6 +32,7 @@ function Appoint() {
     try {
         console.log("data for appointment")
         const data = await appointAPI(selectedDepartment.name , appointmentDetails.name, appointmentDetails.date,appointmentDetails.time)
+        navigate('/medicine')
         console.log(data);
     } catch (error) {
         
@@ -104,6 +108,7 @@ function Appoint() {
       )}
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }

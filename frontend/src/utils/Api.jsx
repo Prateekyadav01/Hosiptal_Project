@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 const baseUrl = "http://localhost:3000/api/v1";
 // const render = https://hosiptal-project.onrender.com/api/v1
 export const signup = async ({ email, name, password, address, phoneNumber, aadharNumber, application, role }) => {
@@ -75,3 +76,20 @@ export const appointAPI = async(department,patientName,date,time)=>{
         console.log("error in taking appointment", error);
     }
 }
+
+
+export const orderGenerate = async(amount)=>{
+    try {
+        console.log(amount);
+        const response = await axios.post(`${baseUrl}/payment/order`, {
+            amount
+        },{
+          })
+          console.log(response)
+          return response.data;
+    } catch (error) {
+        console.log("Gneration razorPay token error" , error);
+    }
+}
+
+

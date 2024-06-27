@@ -1,5 +1,8 @@
 import React, { useReducer } from 'react';
 import { medicine } from '../../assets/constants';
+import { orderGenerate } from '../../utils/Api';
+import toast, { Toaster } from 'react-hot-toast';
+import axios from 'axios';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -65,7 +68,7 @@ const initialValue = {
 
 const Medicine = () => {
   const [state, dispatch] = useReducer(reducer, initialValue);
-
+  const baseUrl = "http://localhost:3000/api/v1";
   const handleAddCart = (item) => {
     dispatch({ type: 'ADD_CART', payload: item });
   };
@@ -77,10 +80,76 @@ const Medicine = () => {
   const handleCartDecrement = (id) => {
     dispatch({ type: 'CART_DECREMENT', payload: id });
   };
-
+ let total ;
   const calculateTotal = () => {
-    return state.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    total =state.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    return total;
+    // return state.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
+
+  const handlePayment = async()=>{
+    try {
+      const data = await orderGenerate(total);
+      console.log(data);
+       await toast.success('Order Placed Successfully');
+       verifyOrder(data.data);
+      toast.success('Payment done')
+    } catch (error) {
+      
+    }
+  }
+  const verifyOrder = async(data)=>{
+    try {
+      const options = {
+          key: import.meta.env.RAZORPAY_KEY_ID,
+          amount: data.amount,
+          currency: data.currency,
+          name: "Prateek hospital",
+          description: "Test Mode",
+          order_id: data.id,
+          handler: async (response) => {
+              console.log("response", response)
+              try {
+                // const res = await axios.post()
+                  const res = await fetch(`${baseUrl}/payment/verify`, {
+                      method: 'POST',
+                      headers: {
+                          'content-type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                          razorpay_order_id: response.razorpay_order_id,
+                          razorpay_payment_id: response.razorpay_payment_id,
+                          razorpay_signature: response.razorpay_signature,
+                      })
+                  })
+  
+                  const verifyData = await res.json();
+                  console.log("data------------>",verifyData);
+                  if (verifyData.message) {
+                      toast.success(verifyData.message)
+                  }
+              } catch (error) {
+                  console.log(error);
+              }
+          },
+          theme: {
+              color: "#5f63b8"
+          }
+      };
+      const rzp1 = new window.Razorpay(options);
+      rzp1.open();
+    } catch (error) {
+     console.log(error);
+    }
+ }
+
+  // const handleVerify = async() =>{
+  //   try {
+  //     const response = await verifyOrder()
+  //   } catch (error) {
+      
+  //   }
+  // }
 
   return (
     <div className="p-4" style={{
@@ -128,9 +197,13 @@ const Medicine = () => {
             {state.cart.length > 0 && (
               <h3 className='flex items-center justify-center font-bold'>Total: ${calculateTotal()}</h3>
             )}
+
+
+            <button onClick={handlePayment} className='flex border-2 bg-black text-white justify-end right-0 p-2'>Payment</button>
           </div>
         </div>
       </div>
+      <Toaster/>
     </div>
   );
 };

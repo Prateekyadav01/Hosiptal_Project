@@ -13,7 +13,7 @@ const Layout = () => {
     <div className='flex flex-col ' >
       <Navbar/>
       <Hero/>
-      <SliderComponent/>
+      {/* <SliderComponent/> */}
       <Section1/>
       <Section2/>
       <Footer/>

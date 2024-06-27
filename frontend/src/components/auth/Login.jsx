@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { signup } from '../../utils/Api';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux';
 import { getEmail } from '../../utils/slice/otpEmail';
 
 const Login = () => {
@@ -14,7 +14,7 @@ const Login = () => {
   const [address, setAddress] = useState('');
   const [application, setApplication] = useState('');
   const [patient, setPatient] = useState(true);
-  const navigate = useNavigate('')
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleInputChange = (setter) => (event) => {
@@ -38,11 +38,10 @@ const Login = () => {
         role: patient ? 'patient' : 'doctor',
       });
       console.log(data);
-      if(data){
-        toast.success("Signup successful")
-        toast.success("Signup successful")
+      if (data) {
+        toast.success('Signup successful');
         dispatch(getEmail(email));
-        navigate("/otp-verify")
+        navigate('/otp-verify');
       }
       // Clear form fields after successful signup
       setName('');
@@ -63,24 +62,22 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-100" style={{
-      backgroundImage: "linear-gradient(rgb(255 225 209),rgb(249 159 159)",
-    }}>
-      <div className="bg-white p-8 rounded shadow-md w-full md:w-2/3 lg:w-1/2 m-10">
-        <h2 className="text-3xl font-bold mb-6 text-center">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-200 via-red-200 to-pink-300">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+        <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
           {patient ? 'Patient Signup' : 'Doctor Signup'}
         </h2>
-        <div className="mb-4">
+        <div className="mb-4 flex justify-center">
           <button
             onClick={handleRoleChange}
-            className="bg-gray-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[30vw] flex justify-center ml-24 items-center  focus:outline-none focus:shadow-outline"
+            className="bg-gray-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300"
           >
             {patient ? 'Are you a Doctor?' : 'Are you a Patient?'}
           </button>
         </div>
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 ">
           <input
-            className="input-field"
+            className="input-field p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
             type="text"
             placeholder="Name"
             value={name}
@@ -88,7 +85,7 @@ const Login = () => {
             required
           />
           <input
-            className="input-field"
+            className="input-field p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
             type="email"
             placeholder="Email"
             value={email}
@@ -96,7 +93,7 @@ const Login = () => {
             required
           />
           <input
-            className="input-field"
+            className="input-field p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
             type="password"
             placeholder="Password"
             value={password}
@@ -105,7 +102,7 @@ const Login = () => {
           />
           {patient ? (
             <input
-              className="input-field"
+              className="input-field p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               type="number"
               placeholder="Aadhar Number"
               value={aadharNumber}
@@ -113,7 +110,7 @@ const Login = () => {
             />
           ) : (
             <input
-              className="input-field"
+              className="input-field p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
               type="number"
               placeholder="Application ID"
               value={application}
@@ -121,7 +118,7 @@ const Login = () => {
             />
           )}
           <input
-            className="input-field"
+            className="input-field p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
             type="tel"
             placeholder="Phone Number"
             value={phoneNumber}
@@ -129,7 +126,7 @@ const Login = () => {
           />
           {patient && (
             <textarea
-              className="input-field h-20"
+              className="input-field p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400 h-20"
               placeholder="Address"
               value={address}
               onChange={handleInputChange(setAddress)}
@@ -137,19 +134,19 @@ const Login = () => {
           )}
           <button
             type="submit"
-            className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-[30vw] flex justify-center ml-24 items-center  focus:outline-none focus:shadow-outline"
+            className="bg-black hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded transition duration-300"
           >
             Signup
           </button>
         </form>
         <p className="text-center text-sm text-gray-600 mt-4">
           Already have an account?{' '}
-          <a onClick={()=> navigate('/register')} className="text-blue-500 hover:text-blue-700">
+          <span onClick={() => navigate('/register')} className="text-blue-500 hover:text-yellow-700 cursor-pointer">
             Register
-          </a>
+          </span>
         </p>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

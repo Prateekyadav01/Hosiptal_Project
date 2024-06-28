@@ -11,18 +11,21 @@ export const mailSender = async (email, title, body,otp) => {
         message: "Email not found"
       })
     }
-
+    // 
     const otpValue = emailCheck.otp;
     console.log("------------->", otp);
+    console.log(process.env.MAIL_PASS);
     let transporter = nodemailer.createTransport({
-      host: process.env.MAIL_HOST,
+      //host: process.env.MAIL_HOST,
+      
+      service:"gmail",
       auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
       },
       secure: false,
     })
-
+console.log("transport done");
 
     let info = await transporter.sendMail({
       from: `"Prateek | HealthCare" <${process.env.MAIL_USER}>`, // sender address
@@ -30,11 +33,11 @@ export const mailSender = async (email, title, body,otp) => {
       subject: `${title}`, // Subject line
       html: `${body}`, // html body
     })
-    console.log(info.response)
+    console.log("infor",info.response)
     return info
   } catch (error) {
-    console.log(error.message)
-    return error.message
+    console.log("transportor",error)
+    return error;
   }
 }
 

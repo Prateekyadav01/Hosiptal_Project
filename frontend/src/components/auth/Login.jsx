@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { signup } from '../../utils/Api';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { getEmail } from '../../utils/slice/otpEmail';
-import { ThreeDots } from 'react-loader-spinner'; // Import the specific loader component
+import { ThreeDots } from 'react-loader-spinner';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
   const [name, setName] = useState('');
@@ -46,7 +47,11 @@ const Login = () => {
         dispatch(getEmail(email));
         navigate('/otp-verify');
       }
-      // Clear form fields after successful signup
+      else{
+        toast.error('Failed to signup');
+        console.error('Failed to signup');
+      }
+      
       setName('');
       setEmail('');
       setPassword('');
@@ -55,9 +60,10 @@ const Login = () => {
       setAddress('');
       setApplication('');
     } catch (e) {
+      toast.error(e);
       console.log(e);
     } finally {
-      setLoading(false); // Set loading to false when the request is complete
+      setLoading(false); 
     }
   };
 
@@ -165,7 +171,7 @@ const Login = () => {
           </span>
         </p>
       </div>
-      <ToastContainer />
+      <Toaster />
     </div>
   );
 };

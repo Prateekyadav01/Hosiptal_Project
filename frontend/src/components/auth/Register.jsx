@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { register } from '../../utils/Api';
-import { ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import { Outlet, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
@@ -92,7 +92,7 @@ const Register = () => {
           </a>
         </div>
       </div>
-      <ToastContainer/>
+      <Toaster/>
       <Outlet/>
     </div>
   );

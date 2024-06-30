@@ -17,7 +17,7 @@ export const signup = async ({ email, name, password, address, phoneNumber, aadh
         }, {
             // withCredentials:true
         });
-
+        console.log(response)
         return response.data;
     } catch (error) {
         console.error(error);

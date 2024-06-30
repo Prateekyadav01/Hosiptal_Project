@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ThreeDots } from 'react-loader-spinner'; 
 import toast, {  Toaster } from 'react-hot-toast';
+// import 'react-hot-toast/dist/index.css';
 
 
 const OtpConfirmation = () => {

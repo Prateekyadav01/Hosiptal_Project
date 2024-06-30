@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { getEmail } from '../../utils/slice/otpEmail';
 import { ThreeDots } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
+// import 'react-hot-toast/dist/index.css';
 
 const Login = () => {
   const [name, setName] = useState('');
@@ -167,7 +168,7 @@ const Login = () => {
         <p className="text-center text-sm text-gray-600 mt-4">
           Already have an account?{' '}
           <span onClick={() => navigate('/register')} className="text-blue-500 hover:text-yellow-700 cursor-pointer">
-            Register
+            Login
           </span>
         </p>
       </div>

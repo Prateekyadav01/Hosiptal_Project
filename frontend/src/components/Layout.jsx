@@ -10,6 +10,7 @@ import Info from './sections/SectionNew1'
 import About from './sections/About'
 import BookAppointment from './sections/BookAppoint'
 import Reviews from './sections/Review'
+import Doctors from './sections/Doctors'
 // import Slider from 'react-slick'
 
 const Layout = () => {
@@ -21,6 +22,7 @@ const Layout = () => {
       <Info/>  
       {/* <Section1/> */}
       <About/>
+      <Doctors/>
       <Section2/>
       <BookAppointment/>
       <Reviews/>

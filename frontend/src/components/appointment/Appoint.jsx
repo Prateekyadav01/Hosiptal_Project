@@ -45,7 +45,7 @@ function Appoint() {
       return;
     }
     getAppoint();
-    alert(`Appointment booked for ${appointmentDetails.name} in ${selectedDepartment.name} on ${appointmentDetails.date} at ${appointmentDetails.time}.`);
+    toast.success(`Appointment booked for ${appointmentDetails.name} in ${selectedDepartment.name} on ${appointmentDetails.date} at ${appointmentDetails.time}.`);
   };
 
   return (

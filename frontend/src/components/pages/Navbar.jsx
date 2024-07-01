@@ -38,7 +38,7 @@ const Navbar = () => {
           <h1 className="bg-green-400 text-white p-2 rounded-sm py-2 px-4">Welcome {userName}</h1>
         ) : (
           <div className="flex flex-col lg:flex-row items-center gap-4">
-            <Link to="/login" className="bg-yellow-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">SIgnup</Link>
+            <Link to="/login" className="bg-yellow-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Signup</Link>
             <Link to="/register" className="bg-yellow-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</Link>
           </div>
         )}

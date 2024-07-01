@@ -7,12 +7,23 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate  } from "react-router-dom";
 import "../../css/Bookappointment.css";
+import { useSelector } from "react-redux";
+import toast, { Toaster } from 'react-hot-toast';
 
 function BookAppointment() {
+  const selector =useSelector((store)=>store.user);
+  console.log(selector?.user);  
   const navigate = useNavigate();
 
   const handleBookAppointmentClick = () => {
-    navigate("/appointment");
+    if(selector.isLoggedIn){
+        navigate('/appointment');
+    }
+    else{
+        toast.error('Please login to book an appointment');
+        // alert("Please login to book an appointment");
+        // navigate('/login')
+    }
   };
 
   return (
@@ -53,6 +64,7 @@ function BookAppointment() {
           <FontAwesomeIcon icon={faCalendarCheck} /> Book Appointment
         </button>
       </div>
+      <Toaster/>
     </div>
   );
 }

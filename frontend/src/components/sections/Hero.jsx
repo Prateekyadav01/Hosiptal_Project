@@ -3,6 +3,7 @@ import Hero1 from '../../assets/images/Hero1Image.png';
 import ButtonAll from '../common/ButtonAll';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Hero = () => {
     const selector = useSelector((store)=>store.user);
@@ -11,7 +12,10 @@ const Hero = () => {
         if(selector.isLoggedIn){
             navigate('/appointment');
         }
-        console.log('Appointment');
+        else{
+            toast.error('Please login to book an appointment');
+            // navigate('/login');
+        }
     };
 
     return (
@@ -45,6 +49,7 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
+            <Toaster />
         </div>
     );
 };

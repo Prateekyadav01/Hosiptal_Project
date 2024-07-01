@@ -8,6 +8,8 @@ import Footer from './sections/Footer'
 import SliderComponent from './sections/Slider'
 import Info from './sections/SectionNew1'
 import About from './sections/About'
+import BookAppointment from './sections/BookAppoint'
+import Reviews from './sections/Review'
 // import Slider from 'react-slick'
 
 const Layout = () => {
@@ -20,6 +22,8 @@ const Layout = () => {
       {/* <Section1/> */}
       <About/>
       <Section2/>
+      <BookAppointment/>
+      <Reviews/>
       <Footer/>
       {/* <Home/> */}
       

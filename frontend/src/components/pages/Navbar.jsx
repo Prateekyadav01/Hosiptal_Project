@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../../assets/images/hospital_logo.jpg';
+import { logout } from '../../utils/slice/userSlice';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+  const dispatch = useDispatch();
   const selector = useSelector((store) => store.user);
   const userName = selector?.user?.user?.name;
-
+  const handleLogout =()=>{
+    console.log("logout called=----------------------------------------------------------------")
+    dispatch(logout());
+    toast.success('Logged out successfully!');
+  }
   return (
     <div className="bg-gray-800 z-10 text-white py-4 px-6 flex items-center justify-between fixed w-full">
       <Link to="/">
@@ -35,7 +42,10 @@ const Navbar = () => {
         <Link to="/contact" className="text-white hover:text-blue-700 font-bold py-2 px-4">Contact</Link>
 
         {userName ? (
-          <h1 className="bg-green-400 text-white p-2 rounded-sm py-2 px-4">Welcome {userName}</h1>
+          <div className='flex gap-2 rounded-md'>
+            <h1 className="bg-green-400 text-black p-2 rounded-md py-2 px-4">Welcome {userName}</h1>
+            <button className='bg-red-400 py-2 px-4 text-black rounded-md' onClick={handleLogout}>Logout</button>
+            </div>
         ) : (
           <div className="flex flex-col lg:flex-row items-center gap-4">
             <Link to="/login" className="bg-yellow-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Signup</Link>
@@ -43,6 +53,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
+      <Toaster/>
     </div>
   );
 };

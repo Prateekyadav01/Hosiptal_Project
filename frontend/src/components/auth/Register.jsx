@@ -1,65 +1,63 @@
 import React, { useState } from 'react';
 import { register } from '../../utils/Api';
-import { ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import { Outlet, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../utils/slice/userSlice';
 import { ThreeDots } from 'react-loader-spinner'; 
-// import 'react-hot-toast/dist/index.css'; 
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState(false);
-  const [value, setValue] = useState('Doctor Login');
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [value, setValue] = useState('Patient Login');
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleRole = () => {
-    setRole((prev) => !prev);
-    setValue(role ? 'Doctor Login (click for patient)' : 'Patient Login (click for doctor)');
+    setRole((prevRole) => {
+      const newRole = !prevRole;
+      setValue(newRole ? 'Doctor Login' : 'Patient Login');
+      return newRole;
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true when the request starts
-    console.log(role ? "patient" : "doctor");
+    setLoading(true); 
+    console.log(role);
+    console.log(role===false ? "patient" : "doctor");
     const data = await register({
       email,
       password,
-      role: role ? 'patient' : 'doctor',
+      role: !role ? 'patient' : 'doctor',
     });
     console.log(data, '------>Form submitted');
-    setLoading(false); // Set loading to false when the request is complete
-    if (data) {
+    setLoading(false); 
+    if (data.statusCode==200) {
+      dispatch(setUser({
+        user: data?.data?.user,
+        isLoggedIn: true,
+        isAdmin: role,
+      }));
       toast.success("Registered Successfully");
-      if (role) {
-        dispatch(setUser({
-          user: data?.data?.user,
-          isLoggedIn: true,
-          isAdmin: false,
-        }));
-        navigate("/");
-      } else {
-        dispatch(setUser({
-          user: data?.data?.user,
-          isLoggedIn: true,
-          isAdmin: true,
-        }));
-        navigate("/");
-      }
+      navigate("/");
     } else {
-      toast.error("Registration Failed");
+      console.log(data)
+      toast.error(data);
     }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-r from-pink-200 to-yellow-200">
+    <div className="flex justify-center items-center h-screen bg-gradient-to-r from-pink-200 to-yellow-200 ">
       <div className="login-container bg-white p-8 rounded-lg shadow-md w-80">
         <h2 className="text-center text-2xl mb-4 font-bold">Register</h2>
-        <h3 className="text-center text-lg mb-6 cursor-pointer text-gray-600" onClick={handleRole}>
+        <h3 
+          className="bg-black text-white py-2 px-4 rounded-md text-center cursor-pointer mb-4"
+          onClick={handleRole}
+        >
           {value}
         </h3>
         {loading ? (
@@ -75,7 +73,7 @@ const Register = () => {
               placeholder="Email"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-pink-500"
               required
-              disabled={loading} // Disable the input when loading
+              disabled={loading} 
             />
             <input
               type="password"
@@ -84,12 +82,12 @@ const Register = () => {
               placeholder="Password"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-pink-500"
               required
-              disabled={loading} // Disable the input when loading
+              disabled={loading} 
             />
             <button
               type="submit"
               className="w-full bg-pink-500 text-white px-4 py-2 rounded-md text-center font-semibold transition-colors duration-300 ease-in-out hover:bg-pink-600"
-              disabled={loading} // Disable the button when loading
+              disabled={loading} 
             >
               Register
             </button>
@@ -102,7 +100,7 @@ const Register = () => {
           </a>
         </div>
       </div>
-      <ToastContainer />
+      <Toaster />
       <Outlet />
     </div>
   );

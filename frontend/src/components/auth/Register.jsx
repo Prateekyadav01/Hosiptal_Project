@@ -3,7 +3,7 @@ import { register } from '../../utils/Api';
 import toast, { Toaster } from 'react-hot-toast';
 import { Outlet, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../utils/slice/userSlice';
 import { ThreeDots } from 'react-loader-spinner'; 
 
@@ -15,6 +15,7 @@ const Register = () => {
   const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
 
   const handleRole = () => {
     setRole((prevRole) => {
@@ -37,12 +38,13 @@ const Register = () => {
     console.log(data, '------>Form submitted');
     setLoading(false); 
     if (data.statusCode==200) {
-      dispatch(setUser({
+      await dispatch(setUser({
         user: data?.data?.user,
         isLoggedIn: true,
         isAdmin: role,
       }));
       toast.success("Registered Successfully");
+
       navigate("/");
     } else {
       console.log(data)

@@ -19,12 +19,14 @@ import authRoutes from './routes/auth.routes.js';
 import otpRoutes from './routes/otp.routes.js'
 import appointRoute from './routes/appoint.routes.js'
 import payment from './routes/payment.routes.js'
+import profile from './routes/profile.routes.js'
 //routes declaration
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/auth', otpRoutes);
 app.use('/api/v1/appoint',appointRoute);
 app.use('/api/v1/payment',payment);
+app.use('/api/v1/profile',profile);
 
 // http://localhost:8000/api/v1/users/register
 

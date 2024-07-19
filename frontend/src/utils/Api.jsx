@@ -148,7 +148,8 @@ export const verifyOrder = async(data)=>{
         },{
             headers: {
                 'Content-Type':'multipart/form-data',
-            }
+            },
+            credentials:true
         });
 
         console.log("____",response);

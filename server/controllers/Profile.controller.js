@@ -3,6 +3,7 @@ import multer from 'multer'
 import path from 'path'
 import {v4 as uuid} from 'uuid'
 import FileModel from '../models/file.model.js'
+import Profile from '../models/profile.model.js'
 
 
 const uploadFolder = "imageUpload"
@@ -34,7 +35,7 @@ export const uploadFile = (req,res)=>{
         }
         console.log("--------------->fileDATA",fileData);
         const newImageFile = await FileModel.create(fileData)
-        return res.status(200).json({message:"File uploaded successfully",file : fileData})
+        return res.status(200).json({message:"File uploaded successfully",file : newImageFile})
     })
 }
 
@@ -83,7 +84,18 @@ export const downloadFile = async (req, res) => {
 
 export const profileUpdate = async(req,res)=>{
     try {
-        
+        const{image,inputValue} = req.body;
+
+        if([image,inputValue].some((field)=>{
+            field.trim()===''
+        })){
+            return res.status(400).json({message:"Please provide all required fields"})
+        }
+        const profileSave = await Profile.create({
+            userId: req.user.id,
+            image: image,
+            inputValue: inputValue
+        })
     } catch (error) {
         
     }

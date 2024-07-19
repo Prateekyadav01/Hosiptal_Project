@@ -193,8 +193,9 @@ export const userSignup = async (req, res) => {
       );
   
       const options = {
-        httpOnly: true,
+        sameSite: 'none',
         secure: true,
+        path: '/',
       };
   
       console.log(accessToken,refreshToken)

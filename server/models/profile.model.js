@@ -8,7 +8,7 @@ const profileSchema = mongoose.Schema({
     image:{
         type:String
     },
-    dailyNote:{
+    inputValue:{
         type:String
     }
 })

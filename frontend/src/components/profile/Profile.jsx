@@ -1,32 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { uploadImage } from '../../utils/Api';
 
-const Profile = ({ userId }) => {
-    const [profile, setProfile] = useState({
-        image: null,
-        dailyNote: '',
-    });
+const Profile = () => {
+    
     const [imagePreview, setImagePreview] = useState('');
-
-    useEffect(() => {
-        // Fetch the profile data based on userId
-        axios.get(`/api/profile/${userId}`)
-            .then(response => {
-                setProfile(response.data);
-                setImagePreview(response.data.image); // Assuming the response includes the image URL
-            })
-            .catch(error => {
-                console.error('Error fetching profile data:', error);
-            });
-    }, [userId]);
+    const [inputValue,setInputValue] =useState('');
+    // const [imageChange,setImageC]
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setProfile(prevProfile => ({
-            ...prevProfile,
-            [name]: value
-        }));
+        setInputValue(e.target.value);
     };
 
     const handleFileChange = async(e) => {
@@ -35,29 +17,15 @@ const Profile = ({ userId }) => {
        const fileName = e.target.files[0];
        console.log(fileName);
        const data = await uploadImage({fileName});
+       console.log(data);
        console.log(data.file.originalName);
-       setImagePreview(data.file.originalName)
+       setImagePreview(URL.createObjectURL(fileName));
+       
     };
-    console.log(imagePreview);
+    // console.log(imagePreview);
 
     const handleSave = () => {
-        // Create a form data to handle file upload
-        const formData = new FormData();
-        formData.append('image', profile.image);
-        formData.append('dailyNote', profile.dailyNote);
-
-        // Save the profile data
-        axios.put(`/api/profile/${userId}`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-        .then(response => {
-            console.log('Profile updated successfully');
-        })
-        .catch(error => {
-            console.error('Error updating profile:', error);
-        });
+        
     };
 
     return (
@@ -85,8 +53,8 @@ const Profile = ({ userId }) => {
                         <div className="mb-4">
                             <label className="block text-sm font-medium text-gray-700">Daily Note</label>
                             <textarea 
-                                name="dailyNote" 
-                                value={profile.dailyNote} 
+                                name="dailyNote"
+                                value={inputValue} 
                                 onChange={handleInputChange}
                                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                 placeholder="Write your daily note here"

@@ -33,14 +33,12 @@ const Profile = ({ userId }) => {
         console.log(e);
        console.log("file Change_ ", e.target.files[0])
        const fileName = e.target.files[0];
-    //    const formData=new FormData();
-    //    formData.append(
-    //    )
        console.log(fileName);
        const data = await uploadImage({fileName});
-       console.log(data);
-
+       console.log(data.file.originalName);
+       setImagePreview(data.file.originalName)
     };
+    console.log(imagePreview);
 
     const handleSave = () => {
         // Create a form data to handle file upload

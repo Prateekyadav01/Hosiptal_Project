@@ -28,13 +28,13 @@ export const uploadFile = (req,res)=>{
         console.log("whole data",req.file);
 
         const fileData = {
-            originalName:req.file.filename,
-            newName:req.file.path,
+            originalName:req.file.originalname,
+            newName:req.file.filename,
             size:req.file.size
         }
         console.log("--------------->fileDATA",fileData);
         const newImageFile = await FileModel.create(fileData)
-        return res.status(200).json({message:"File uploaded successfully",file_id : newImageFile._id})
+        return res.status(200).json({message:"File uploaded successfully",file : fileData})
     })
 }
 

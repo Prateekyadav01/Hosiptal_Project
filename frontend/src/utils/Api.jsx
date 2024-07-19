@@ -2,6 +2,7 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 // const baseUrl = "http://localhost:3000/api/v1";
 const baseUrl = process.env.REACT_URL;
+console.log("baseUrl");
 export const signup = async ({ email, name, password, address, phoneNumber, aadharNumber, application, role }) => {
     try {
         console.log(role);

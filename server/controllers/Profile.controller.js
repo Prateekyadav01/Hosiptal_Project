@@ -2,6 +2,7 @@
 import multer from 'multer'
 import path from 'path'
 import {v4 as uuid} from 'uuid'
+import FileModel from '../models/file.model.js'
 
 
 const uploadFolder = "imageUpload"
@@ -32,9 +33,53 @@ export const uploadFile = (req,res)=>{
             size:req.file.size
         }
         console.log("--------------->fileDATA",fileData);
-        return res.status(200).json({message:"File uploaded successfully",file:req.file})
+        const newImageFile = await FileModel.create(fileData)
+        return res.status(200).json({message:"File uploaded successfully",file_id : newImageFile._id})
     })
 }
+
+export const shareableLink = async(req,res)=>{
+    try {
+        const fileId = req.params.fileId;
+        if(!fileId){
+            console.log("Please provide a file");
+            return res.status(400).json({message: "File ID is required"})
+        }
+        console.log(fileId);
+        const shareLink = `/file/download/${fileId}`
+
+        const fileCheck = await FileModel.findById(fileId)
+
+        if(!fileCheck){
+            console.log("File not found in db");
+            return res.status(404).json({message: "File not found"})
+        }
+
+        res.status(200).json({
+            message: "Shareable link generated successfully",
+            shareLink
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message: "Internal Server Error in shareable link",
+            error: error.message
+        })
+    }
+}
+
+
+export const downloadFile = async (req, res) => {
+    const fileId = req.params.fileId;
+    const fileData = await FileModel.findById(fileId);
+    if (!fileData) {
+      // File is not available for this ID
+      return res.status(400).end("Invalid URL");
+    }
+    console.log(fileData);
+    const path = `imageUpload/${fileData.newName}`;
+    res.download(path, fileData.originalName);
+  };
+  
 
 export const profileUpdate = async(req,res)=>{
     try {

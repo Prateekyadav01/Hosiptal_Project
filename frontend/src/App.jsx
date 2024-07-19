@@ -12,44 +12,51 @@ import Medicine from './components/Medicine/Medicine';
 import OtpConfirmation from './components/auth/OtpVerify';
 import Appoint from './components/appointment/Appoint';
 import Details from './components/appointment/Details';
+import Profile from './components/profile/Profile';
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />
+      element: <Layout />,
+      children: [
+
+      ]
     },
     {
       path: "/contact",
       element: <ContactPage />
     },
     {
-      path:"/section/:id",
-      element : <Details/>
+      path: "/section/:id",
+      element: <Details />
     },
     {
       path: "/login",
       element: <Login />,
-      
+
     },
     {
       path: "/register",
       element: <Register />
-      
-    },{
-      path:"/otp-verify",
-      element:<OtpConfirmation/>
-    },{
-      
-        path:'/medicine',
-        element:<Medicine/>
-      }
-      ,{
-        path:'/appointment',
-        element:<Appoint/>
-      }
-    
+
+    }, {
+      path: "/otp-verify",
+      element: <OtpConfirmation />
+    }, {
+
+      path: '/medicine',
+      element: <Medicine />
+    }
+    , {
+      path: '/appointment',
+      element: <Appoint />
+    }, {
+      path: '/profile',
+      element: <Profile />
+    }
+
   ]);
 
   return (

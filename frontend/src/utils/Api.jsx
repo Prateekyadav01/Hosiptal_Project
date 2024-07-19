@@ -1,7 +1,7 @@
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-// const baseUrl = "http://localhost:3000/api/v1";
-const baseUrl = "https://hosiptal-project.onrender.com/api/v1";
+const baseUrl = "http://localhost:3000/api/v1";
+// const baseUrl = "https://hosiptal-project.onrender.com/api/v1";
 export const signup = async ({ email, name, password, address, phoneNumber, aadharNumber, application, role }) => {
     try {
         console.log(role);
@@ -136,5 +136,24 @@ export const verifyOrder = async(data)=>{
       rzp1.open();
     } catch (error) {
      console.log(error);
+    }
+ }
+
+
+ export const uploadImage = async({fileName})=>{
+    try {
+        console.log("++  ",fileName);
+        const response = await axios.post(`${baseUrl}/profile/profileImage`,{
+            imageUrl:fileName
+        },{
+            headers: {
+                'Content-Type':'multipart/form-data',
+            }
+        });
+
+        console.log("____",response);
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error uploading profile image`,error);
     }
  }

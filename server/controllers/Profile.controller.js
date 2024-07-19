@@ -28,8 +28,8 @@ export const uploadFile = (req,res)=>{
         console.log("whole data",req.file);
 
         const fileData = {
-            originalName:req.file.originalname,
-            newName:req.file.filename,
+            originalName:req.file.filename,
+            newName:req.file.path,
             size:req.file.size
         }
         console.log("--------------->fileDATA",fileData);

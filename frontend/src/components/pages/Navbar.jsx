@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../../assets/images/hospital_logo.jpg';
@@ -15,10 +15,15 @@ const Navbar = () => {
   console.log(selector);
   const userName = selector?.user?.user?.name;
   console.log(userName);
+  const navigate = useNavigate();
   const handleLogout =()=>{
     console.log("logout called=----------------------------------------------------------------")
     dispatch(logout());
     toast.success('Logged out successfully!');
+  }
+
+  const handleProfile =()=>{
+    navigate('/profile', { replace: true });
   }
   return (
     <div className="bg-gray-800 z-10 text-white py-4 px-6 flex items-center justify-between fixed w-full">
@@ -48,7 +53,7 @@ const Navbar = () => {
           <div className='flex gap-2 rounded-md'>
             <h1 className="bg-green-400 text-black p-2 rounded-md py-2 px-4">Welcome {userName}</h1>
             <button className='bg-red-400 py-2 px-4 text-black rounded-md' onClick={handleLogout}>Logout</button>
-            <div className='p-2  flex items-center text-2xl'> 
+            <div className='p-2  flex items-center text-2xl' onClick={handleProfile}> 
             <CgProfile />
             </div>
             </div>

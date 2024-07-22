@@ -12,6 +12,7 @@
     "nodemon": "^3.1.0",
     "otp-generator": "^4.0.1",
     "razorpay": "^2.9.4",
+    "universal-cookie": "^7.1.4",
     "uuid": "^10.0.0"
   },
   "name": "server",

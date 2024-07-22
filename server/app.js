@@ -16,10 +16,10 @@ app.use(cookieParser())
 
 //routes import
 import authRoutes from './routes/auth.routes.js';
-import otpRoutes from './routes/otp.routes.js'
-import appointRoute from './routes/appoint.routes.js'
-import payment from './routes/payment.routes.js'
-import profile from './routes/profile.routes.js'
+import otpRoutes from './routes/otp.routes.js';
+import appointRoute from './routes/appoint.routes.js';
+import payment from './routes/payment.routes.js';
+import profile from './routes/profile.routes.js';
 //routes declaration
 
 app.use('/api/v1/auth', authRoutes);

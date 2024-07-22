@@ -31,12 +31,19 @@ export const signup = async ({ email, name, password, address, phoneNumber, aadh
 export const register = async({email,password,role})=>{
     try{
         console.log("from frotend---->",email,password,role);
+       const  config =
+       { headers: { 
+           'Content-Type': 'application/json',
+        }
+    };
         const response = await axios.post(`${baseUrl}/auth/register` ,
             {
                 email,
                 password,
                 role
             },
+            config
+          
             
         )
         return response.data;
